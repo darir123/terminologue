@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: terminologue
+    runtime: docker
+    repo: https://github.com/darir123/terminologue
+    branch: master
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /data
+    plan: free
+    autoDeploy: true
