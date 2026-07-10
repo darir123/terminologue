@@ -1,0 +1,9 @@
+{
+  "name": "personal-website",
+  "version": "1.0.0",
+  "description": "Personal website server",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

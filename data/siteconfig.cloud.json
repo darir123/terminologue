@@ -1,0 +1,83 @@
+{
+  "readonly": false,
+  "baseUrl": "https://terminologue.fly.dev/",
+  "rootPath": "/",
+  "port": 3000,
+  "dataDir": "/data/",
+  "sharedDir": "/app/shared/",
+  "admins": ["h.darir@uca.ac.ma", "root@localhost"],
+  "trackingCode": "",
+  "uilangs": [
+    {"abbr": "en", "caption": "English"},
+    {"abbr": "ga", "caption": "Gaeilge"},
+    {"abbr": "cs", "caption": "česky"},
+    {"abbr": "sv", "caption": "svenska"},
+    {"abbr": "cy", "caption": "Cymraeg"},
+    {"abbr": "fi", "caption": "suomi"},
+    {"abbr": "nl", "caption": "Nederlands"},
+    {"abbr": "ru", "caption": "русский"},
+    {"abbr": "es", "caption": "español"},
+    {"abbr": "ar", "caption": "العربية"},
+    {"abbr": "hr", "caption": "hrvatski"},
+    {"abbr": "de", "caption": "Deutsch"},
+    {"abbr": "lt", "caption": "lietuvių kalba"},
+    {"abbr": "nb", "caption": "norsk bokmål"},
+    {"abbr": "el", "caption": "Ελληνικά"},
+    {"abbr": "tr", "caption": "Türkçe"},
+    {"abbr": "ca", "caption": "català"},
+    {"abbr": "eu", "caption": "euskara"},
+    {"abbr": "zh", "caption": "正體中文"},
+    {"abbr": "fr", "caption": "français"}
+  ],
+  "welcome": {
+    "en": "<div class='intro'>Welcome to <strong>Terminologue</strong>, a cloud-based, open-source terminology management tool.</div><div class='point'><div class='title'><a href='docs/intro.en/'>Gentle introduction to Terminologue</a></div><div class='blurb'>A short and sweet guided tour of Terminologue for beginners.</div></div><div class='point noblurb'><div class='title'><a href='docs/info.en/'>About Terminologue</a></div></div>"
+  },
+  "uilangDefault": "en",
+  "mailconfig": {"host": "localhost", "port": 465, "secure": false, "from": "noreply@localhost"},
+  "licences": {
+    "cc-by-4.0": {
+      "title": "Creative Commons Attribution 4.0 International",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "icon": "furniture/lic-cc-by.png"
+    },
+    "cc-by-sa-4.0": {
+      "title": "Creative Commons Attribution Share-Alike 4.0 International",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "icon": "furniture/lic-cc-by-sa.png"
+    },
+    "odbl-1.0": {
+      "title": "Open Database Licence 1.0",
+      "url": "https://opendatacommons.org/licenses/odbl/summary/",
+      "icon": "furniture/lic-opendata.png"
+    }
+  },
+  "defaultAbc": [
+    ["a", "á", "à", "â", "ä", "ă", "ā", "ã", "å", "ą", "æ"],
+    ["b"],
+    ["c", "ć", "ċ", "ĉ", "č", "ç"],
+    ["d", "ď", "đ"],
+    ["e", "é", "è", "ė", "ê", "ë", "ě", "ē", "ę"],
+    ["f"],
+    ["g", "ġ", "ĝ", "ğ", "ģ"],
+    ["h", "ĥ", "ħ"],
+    ["i", "ı", "í", "ì", "i", "î", "ï", "ī", "į"],
+    ["j", "ĵ"],
+    ["k", "ĸ", "ķ"],
+    ["l", "ĺ", "ŀ", "ľ", "ļ", "ł"],
+    ["m"],
+    ["n", "ń", "ň", "ñ", "ņ"],
+    ["o", "ó", "ò", "ô", "ö", "ō", "õ", "ő", "ø", "œ"],
+    ["p"],
+    ["q"],
+    ["r", "ŕ", "ř", "ŗ"],
+    ["s", "ś", "ŝ", "š", "ş", "ș", "ß"],
+    ["t", "ť", "ţ", "ț"],
+    ["u", "ú", "ù", "û", "ü", "ŭ", "ū", "ů", "ų", "ű"],
+    ["v"],
+    ["w", "ẃ", "ẁ", "ŵ", "ẅ"],
+    ["x"],
+    ["y", "ý", "ỳ", "ŷ", "ÿ"],
+    ["z", "ź", "ż", "ž"]
+  ],
+  "propagatorMsSqlConnectionStrings": {}
+}

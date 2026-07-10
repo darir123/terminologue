@@ -1,32 +1,28 @@
-FROM node:20-slim
-
-ENV NODE_ENV=production \
-    PORT=80
-
-RUN apt-get update && \
-    apt-get install -y sqlite3 && \
-    rm -rf /var/lib/apt/lists/*
+FROM node:22-slim
 
 WORKDIR /app
 
-COPY website ./website
-COPY data ./data
+# Copy package.json and install dependencies
+COPY website/package.json ./website/
+RUN cd website && npm install
 
-RUN mkdir /app/templates && \
-    cp data/terminologue.template.sqlite /app/templates/ && \
-    cp website/siteconfig.template.json /app/templates/
+# Copy application files
+COPY website/ ./website/
+COPY data/ ./data-templates/
+COPY shared/ ./shared/
+COPY scripts/ ./scripts/
+COPY start.sh ./
+RUN chmod +x start.sh
 
-WORKDIR /app/website
-RUN npm install --omit=dev
+# Create data directory for volume mount
+RUN mkdir -p /data
 
-EXPOSE 80
+# Expose port
+EXPOSE 3000
 
-VOLUME ["/app/data"]
+# Set environment
+ENV DATA_DIR=/data
+ENV NODE_ENV=production
 
-WORKDIR /app/website
-
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh
-
-ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["node", "terminologue.js"]
+# Start the application
+CMD ["./start.sh"]
