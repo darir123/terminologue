@@ -79,3 +79,6 @@ scripts/fiat.txt
 siteconfig.json
 exportimport/_*.*
 data/.initialized
+*.box
+.vagrant/
+runtime-data/

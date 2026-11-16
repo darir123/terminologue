@@ -1,0 +1,168 @@
+This file is a Fly.io configuration file (typically named fly.toml). It tells Fly.io how to deploy and run your Terminologue application in the cloud.
+
+Here's what each section does:
+
+TOML
+app = "terminologue"
+primary_region = "cdg"
+
+app = "terminologue"
+
+The application name on Fly.io.
+Your app will be deployed under this name.
+
+primary_region = "cdg"
+
+cdg is the Fly.io region code for Paris, France (Charles de Gaulle).
+Fly.io will prefer running your application there.
+Build section
+TOML
+[build]
+dockerfile = "Dockerfile"
+
+This tells Fly.io:
+
+Build the application using the local Dockerfile.
+During deployment, Fly.io runs something similar to:
+Shell
+docker build -f Dockerfile .
+Environment variables
+TOML
+[env]
+PORT = "3000"
+NODE_ENV = "production"
+
+These variables are available inside the container.
+
+PORT=3000
+
+The application should listen on port 3000.
+
+NODE_ENV=production
+
+Tells Node.js applications they are running in production mode.
+Enables performance optimizations.
+
+For example, in Express.js:
+
+JavaScript
+app.listen(process.env.PORT || 3000);
+HTTP service configuration
+TOML
+[http_service]
+internal_port = 3000
+force_https = true
+auto_stop_machines = false
+auto_start_machines = true
+min_machines_running = 1
+processes = ["app"]
+internal_port = 3000
+
+Fly.io expects your application to listen on:
+
+Plain Text
+localhost:3000
+
+inside the container.
+
+force_https = true
+
+Automatically redirects:
+
+Plain Text
+http://
+
+to:
+
+Plain Text
+https://
+auto_stop_machines = false
+
+Do not stop the VM when idle.
+
+auto_start_machines = true
+
+If a VM stops, Fly.io can automatically start it again when requests arrive.
+
+min_machines_running = 1
+
+Keep at least one instance running continuously.
+
+This is important for Terminologue because it avoids startup delays.
+
+processes = ["app"]
+
+Apply this HTTP configuration to the process group named app.
+
+Persistent storage
+TOML
+[[mounts]]
+source = "terminologue_data"
+destination = "/data"
+
+This is very important.
+
+It mounts a persistent Fly.io volume:
+
+Plain Text
+terminologue_data
+
+inside the container at:
+
+Plain Text
+/data
+
+Without this mount:
+
+Plain Text
+Container deleted → all uploaded data lost
+
+With this mount:
+
+Plain Text
+Container deleted
+↓
+Volume remains
+↓
+Documents, projects, uploads survive
+
+For Terminologue this might store:
+
+Uploaded corpora
+Translation memories
+User files
+Database files (if SQLite is used)
+Configuration data
+Overall architecture
+Plain Text
+Internet
+|
+HTTPS
+|
+Fly.io Proxy
+|
+v
++--------------------+
+| Terminologue App |
+| Port 3000 |
++--------------------+
+|
+v
+/data
+|
+v
++--------------------+
+| terminologue_data |
+| Persistent Volume |
++--------------------+
+
+If you're installing Terminologue yourself, this file is essentially the cloud-hosting recipe telling Fly.io:
+
+Build using the Dockerfile.
+Run the application on port 3000.
+Force HTTPS.
+Keep at least one machine running.
+Attach persistent storage at /data.
+Deploy it in the Paris region (cdg).
+Explain how to deploy it on Fly.ioShow a matching DockerfileHow do I create the persistent volume?
+FilesFiles
